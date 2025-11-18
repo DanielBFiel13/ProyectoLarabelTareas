@@ -15,14 +15,14 @@ class TaskSeeder extends Seeder
     {
         $task1 = new Task();
         $task1->title = 'Task 1';
-        $task1->description = 'Description for Task 1';
+        $task1->description = 'Tarea de Admin';
         $task1->user_id = 1;
         $task1->save();
 
         $task2 = new Task();
         $task2->title = 'Task 2';
-        $task2->description = 'Description for Task 2';
-        $task2->user_id = 1;
+        $task2->description = 'Tarea de Daniel';
+        $task2->user_id = 2;
         $task2->save();
     }
 }
