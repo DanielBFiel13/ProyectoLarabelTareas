@@ -22,15 +22,30 @@
                             <tbody>
                                 @foreach ($tasks as $task)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <td class="py-4 px-6">{{ $task->title }}</td>
+                                        <td class="py-4 px-6">
+                                            {{ $task->title }}
+                                            <div class="mt-1">
+                                                @if ($task->user_id === auth()->id())
+                                                    <span
+                                                        class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-purple-400">
+                                                        Mía
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-yellow-400">
+                                                        Compartida
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </td>
                                         <td class="py-4 px-6">{{ $task->description }}</td>
                                         <td class="py-4 px-6 flex space-x-2">
-                                            <button wire:click="editTask({{ $task->id }})" class="text-blue-600 hover:text-blue-900">
+                                            <button wire:click="editTask({{ $task->id }})"
+                                                class="text-blue-600 hover:text-blue-900">
                                                 Editar
                                             </button>
-                                            <button wire:click="deleteTask({{ $task->id }})" 
-                                                    wire:confirm="¿Estás seguro?"
-                                                    class="text-red-600 hover:text-red-900">
+                                            <button wire:click="deleteTask({{ $task->id }})" wire:confirm="¿Estás seguro?"
+                                                class="text-red-600 hover:text-red-900">
                                                 Eliminar
                                             </button>
                                         </td>
@@ -58,15 +73,15 @@
                             <form>
                                 <div class="space-y-4">
                                     <div>
-                                        <label for="title"
-                                            class="block text-sm font-medium text-gray-700">Título</label>
+                                        <label for="title" class="block text-sm font-medium text-gray-700">Título</label>
                                         <input type="text" wire:model="title" name="title" id="title" autocomplete="title"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-black-300 rounded-md text-black">
                                     </div>
                                     <div>
                                         <label for="description"
                                             class="block text-sm font-medium text-gray-700">Descripción</label>
-                                        <textarea type="text" wire:model="description" name="description" id="description" rows="3"
+                                        <textarea type="text" wire:model="description" name="description" id="description"
+                                            rows="3"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-black-300 rounded-md text-black"></textarea>
                                     </div>
                                 </div>
@@ -75,16 +90,19 @@
                         <div class="space-y-4">
 
                             @if ($task_id)
-                                <button class="p-3 bg-blue-600 rounded-full text-white w-full font-semibold" wire:click="updateTask">
+                                <button class="p-3 bg-blue-600 rounded-full text-white w-full font-semibold"
+                                    wire:click="updateTask">
                                     Guardar Cambios
                                 </button>
                             @else
-                                <button class="p-3 bg-green-500 rounded-full text-white w-full font-semibold" wire:click="createTask">
+                                <button class="p-3 bg-green-500 rounded-full text-white w-full font-semibold"
+                                    wire:click="createTask">
                                     Crear Tarea
                                 </button>
                             @endif
 
-                            <button class="p-3 bg-red-500 border rounded-full w-full font-semibold text-white" wire:click="closeCreateModal">
+                            <button class="p-3 bg-red-500 border rounded-full w-full font-semibold text-white"
+                                wire:click="closeCreateModal">
                                 Cancelar
                             </button>
                         </div>
@@ -94,4 +112,4 @@
         </div>
     @endif
 
-    </section>
+</section>

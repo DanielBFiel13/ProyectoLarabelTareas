@@ -23,8 +23,8 @@ class TasksComponent extends Component
     public function getTasks()
     {
         $user = Auth::User();
-        $userTasks = $user->tasks();
-        $sharedTasks = $user->sharedTasks();
+        $userTasks = $user->tasks;
+        $sharedTasks = $user->sharedTasks;
         $this->tasks = $sharedTasks->merge($userTasks);
     }
 
